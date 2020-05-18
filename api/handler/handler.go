@@ -6,8 +6,8 @@ import (
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
 	"github.com/go-chi/chi"
-	"github.com/temp/GQL-Tut/generated"
 	"github.com/temp/GQL-Tut/graph"
+	"github.com/temp/GQL-Tut/graph/generated"
 )
 
 //Routes initialize the handlers for the router
@@ -28,7 +28,8 @@ func graphQLHandler() http.HandlerFunc {
 }
 
 func playgroundQLHandler(endpoint string) http.HandlerFunc {
-	// First argument must be same as graphql handler path
+	//endpoint argument must be same as graphql handler path
+
 	playgroundHandler := playground.Handler("GraphQL", endpoint)
 
 	return playgroundHandler
