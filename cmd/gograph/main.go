@@ -1,7 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"github.com/temp/GQL-Tut/api/router"
+)
 
 func main() {
-	fmt.Printf("Hello")
+	router.ServeRouter()
 }

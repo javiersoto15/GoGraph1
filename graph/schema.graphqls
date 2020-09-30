@@ -2,27 +2,33 @@
 #
 # https://gqlgen.com/getting-started/
 
-type Todo {
-  id: ID!
-  text: String!
-  done: Boolean!
-  user: User!
-}
-
-type User {
-  id: ID!
-  name: String!
-}
-
 type Query {
-  todos: [Todo!]!
-}
-
-input NewTodo {
-  text: String!
-  userId: String!
+  findGenin(name: String!): Ninja
+  returnAllHokages: [Ninja]!
 }
 
 type Mutation {
-  createTodo(input: NewTodo!): Todo!
+  registerNewNinja(input: NewNinja): ResponseMessage
+}
+
+type Ninja {
+  name: String
+  rank: String
+  mainStyle: String
+  village: String
+  status: String
+  numberOfJutsus: Int
+}
+
+input NewNinja {
+  name: String
+  rank: String
+  mainStyle: String
+  village: String
+  status: String
+  numberOfJutsus: Int
+}
+
+type ResponseMessage {
+  message: String!
 }

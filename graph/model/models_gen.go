@@ -2,19 +2,24 @@
 
 package model
 
-type NewTodo struct {
-	Text   string `json:"text"`
-	UserID string `json:"userId"`
+type NewNinja struct {
+	Name           *string `json:"name"`
+	Rank           *string `json:"rank"`
+	MainStyle      *string `json:"mainStyle"`
+	Village        *string `json:"village"`
+	Status         *string `json:"status"`
+	NumberOfJutsus *int    `json:"numberOfJutsus"`
 }
 
-type Todo struct {
-	ID   string `json:"id"`
-	Text string `json:"text"`
-	Done bool   `json:"done"`
-	User *User  `json:"user"`
+type Ninja struct {
+	Name           *string `json:"name"`
+	Rank           *string `json:"rank"`
+	MainStyle      *string `json:"mainStyle"`
+	Village        *string `json:"village"`
+	Status         *string `json:"status"`
+	NumberOfJutsus *int    `json:"numberOfJutsus"`
 }
 
-type User struct {
-	ID   string `json:"id"`
-	Name string `json:"name"`
+type ResponseMessage struct {
+	Message string `json:"message"`
 }

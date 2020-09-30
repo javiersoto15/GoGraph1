@@ -5,18 +5,43 @@ package graph
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/temp/GQL-Tut/graph/generated"
 	"github.com/temp/GQL-Tut/graph/model"
 )
 
-func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) (*model.Todo, error) {
-	panic(fmt.Errorf("not implemented"))
+func (r *mutationResolver) RegisterNewNinja(ctx context.Context, input *model.NewNinja) (*model.ResponseMessage, error) {
+	//If there is a database, here you would insert the new data
+	//as both models are similar, we type cast our input into the Ninja model
+	newNinja := model.Ninja(*input)
+
+	//we append into our array
+	r.Ninjas = append(r.Ninjas, &newNinja)
+
+	return &model.ResponseMessage{Message: "Ninja added"}, nil
 }
 
-func (r *queryResolver) Todos(ctx context.Context) ([]*model.Todo, error) {
-	panic(fmt.Errorf("not implemented"))
+func (r *queryResolver) FindGenin(ctx context.Context, name string) (*model.Ninja, error) {
+	//This simulates a Find in a database
+	for _, tempNinja := range r.Ninjas {
+
+		//we look for ninjas that match the status of genin and the name
+		if *tempNinja.Name == name && *tempNinja.Rank == "Genin" {
+			return tempNinja, nil
+		}
+	}
+	return nil, nil
+}
+
+func (r *queryResolver) ReturnAllHokages(ctx context.Context) ([]*model.Ninja, error) {
+	hokages := []*model.Ninja{}
+	for _, tempNinja := range r.Ninjas {
+		//we look for ninjas that match the status of genin and the name
+		if *tempNinja.Rank == "Hokage" {
+			hokages = append(hokages, tempNinja)
+		}
+	}
+	return hokages, nil
 }
 
 // Mutation returns generated.MutationResolver implementation.
